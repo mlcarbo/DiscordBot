@@ -13,7 +13,8 @@ bot = commands.Bot(command_prefix='!')
 
 @bot.event
 async def on_ready():
-    print(f'{bot.user.name} has connected to Discord!')
+    pri
+    nt(f'{bot.user.name} has connected to Discord!')
 
 @bot.command(name='99', help='Responds with a random quote from brooklyn 99')
 async def nine_nine(ctx):
