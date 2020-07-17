@@ -10,6 +10,9 @@ from dotenv import load_dotenv
 import json
 import asyncio
 
+#Importing insults module to handle that functionality
+import insults
+
 #Setting up global variable and initializing the bot instance with prefix
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -66,5 +69,12 @@ async def kanye_quote(ctx):
     response.set_footer(text='Source: https://api.kanye.rest')
     await asyncio.sleep(1)
     await ctx.send(embed=response)
+
+@bot.command(name='insult', help='Generates a random insult aimed towards the indicated person')
+async def insult_func(ctx, *args):
+    insult_base = insults.insult_part()
+    insult_playerless = insults.insult(insult_base)
+    insult = insult_playerless.format(' '.join(args))
+    await ctx.send(insult)
 
 bot.run(TOKEN)

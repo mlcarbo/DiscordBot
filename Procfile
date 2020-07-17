@@ -1,1 +1,1 @@
-worker: final_bot.py
+worker: python final_bot.py
