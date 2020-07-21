@@ -77,4 +77,13 @@ async def insult_func(ctx, *args):
     insult = insult_playerless.format(' '.join(args))
     await ctx.send(insult)
 
+@bot.command(name='fortune', help='Generate a random fortune.')
+async def fortune_func(ctx):
+    r = requests.get('http://fortunecookieapi.herokuapp.com/v1/fortunes?limit=500').json()
+    choice = random.choice(r)
+    response = discord.Embed(color=discord.Color.dark_green())
+    response.add_field(name=f"Random Fortune: {choice['id']}", value=choice['message'])
+    response.set_footer(text=f"Source: http://fortunecookieapi.herokuapp.com")
+    await ctx.send(embed=response)
+
 bot.run(TOKEN)
